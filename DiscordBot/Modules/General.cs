@@ -30,6 +30,14 @@ namespace DiscordBot.Modules
             await Context.Channel.SendMessageAsync("Pong!");
         }
 
+        [Command("valami")]
+        public async Task valami()
+        {
+            await Context.Channel.TriggerTypingAsync();
+            await Context.Channel.SendMessageAsync("Te vagy a király!!!");
+        }
+
+
         [Command("shutdown")]
         public Task Stop()
         {

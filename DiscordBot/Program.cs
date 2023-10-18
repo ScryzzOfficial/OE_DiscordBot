@@ -42,6 +42,7 @@ namespace DiscordBot
                         LogLevel = LogSeverity.Debug,
                         AlwaysDownloadUsers = false,
                         MessageCacheSize = 200,
+                        GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent
                     };
 
                     config.Token = context.Configuration["Token"];

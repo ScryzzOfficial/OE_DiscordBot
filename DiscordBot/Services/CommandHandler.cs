@@ -39,6 +39,7 @@ namespace DiscordBot.Services
         {
             _client.MessageReceived += OnMessageReceived;
             _service.CommandExecuted += OnCommandExecuted;
+            
             await _service.AddModulesAsync(Assembly.GetEntryAssembly(), _provider);
         }
 
