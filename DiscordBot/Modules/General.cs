@@ -15,11 +15,27 @@ namespace DiscordBot.Modules
         private readonly ILogger<General> _logger;
         //You can inject the host. This is useful if you want to shutdown the host via a command, but be careful with it.
         private readonly IHost _host;
+        private readonly Random rnd;
+
+        List<string> _cars;
+
+        public void InitCars()
+        {
+            foreach (string s in Directory.GetFiles("Cars"))
+            {
+                _cars.Add(s);
+            }
+            
+        }
+
 
         public General(IHost host, ILogger<General> logger)
         {
             _host = host;
             _logger = logger;
+            rnd = new Random();
+            _cars = new List<string>();
+            InitCars();
         }
 
         [Command("ping")]
@@ -33,10 +49,20 @@ namespace DiscordBot.Modules
         [Command("valami")]
         public async Task valami()
         {
+
             await Context.Channel.TriggerTypingAsync();
             await Context.Channel.SendMessageAsync("Te vagy a király!!!");
+            await Context.Channel.SendFileAsync("Pictures/ad_132299305.jpg");
         }
 
+
+
+        [Command("car")]
+        public async Task Cars()
+        {
+            await Context.Channel.TriggerTypingAsync();
+            await Context.Channel.SendFileAsync(_cars[rnd.Next(0, _cars.Count)]);
+        }
 
         [Command("shutdown")]
         public Task Stop()

@@ -67,7 +67,7 @@ namespace DiscordBot.Services
 
             var argPos = 0;
             var user = message.Author as SocketGuildUser;
-            var prefix = "!";
+            var prefix = _configuration.GetSection("Prefix").Value;
             if (!message.HasStringPrefix(prefix, ref argPos) && !message.HasMentionPrefix(_client.CurrentUser, ref argPos))
             {
                 return;
